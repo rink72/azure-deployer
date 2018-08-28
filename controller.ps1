@@ -14,7 +14,11 @@ VirtualMachines:
  - name: vm2
    size: smaller
    network: private
-'@
+'@,
+
+  # Verbose switch. Used for displaying verbose messages in testing.
+  [Parameter()]
+  [switch] $Verbose = $false
 )
 
 
