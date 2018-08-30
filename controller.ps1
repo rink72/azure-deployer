@@ -18,8 +18,11 @@ VirtualMachines:
 
   # Verbose switch. Used for displaying verbose messages in testing.
   [Parameter()]
-  [switch] $Verbose = $false
+  [boolean] $TestMode = $false
 )
+
+# Set testing mode to display output in test pane
+if ($TestMode) { $VerbosePreference = 'Continue' }
 
 
 # If runbook was called from Webhook, WebhookData will not be null.
