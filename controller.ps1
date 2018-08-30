@@ -33,8 +33,8 @@ if ( -not $WebhookData)
 }
 
 # Allow testing from the test pane
-if ( -not $WebhookData.RequestData ) { $deploymentDefinition = $WebhookData }
-else { $deploymentDefinition = $WebhookData.RequestData }
+if ( -not $WebhookData.RequestBody ) { $deploymentDefinition = $WebhookData }
+else { $deploymentDefinition = $WebhookData.RequestBody }
 
 Write-Verbose $deploymentDefinition
 
