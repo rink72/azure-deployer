@@ -29,6 +29,9 @@ if ( -not $WebhookData)
   Return
 }
 
+# Allow testing from the test pane
+if ( -not $WebhookData.RequestData ) { $deploymentDefinition = $WebhookData }
+else { $deploymentDefinition = $WebhookData.RequestData }
 
 # Module imports
 Import-Module psyaml
@@ -36,7 +39,7 @@ Import-Module psyaml
 $Conn = Get-AutomationConnection -Name AzureRunAsConnection
 $null = Connect-AzureRmAccount -ServicePrincipal -Tenant $Conn.TenantID -ApplicationId $Conn.ApplicationID -CertificateThumbprint $Conn.CertificateThumbprint
 
-$structuredDefinition = $DeploymentDefinition | ConvertFrom-Yaml
+$structuredDefinition = $deploymentDefinition | ConvertFrom-Yaml
 
 $definitionName = $structuredDefinition.Name
 $virtualMachines = $structuredDefinition.VirtualMachines
