@@ -36,6 +36,8 @@ if ( -not $WebhookData)
 if ( -not $WebhookData.RequestData ) { $deploymentDefinition = $WebhookData }
 else { $deploymentDefinition = $WebhookData.RequestData }
 
+Write-Verbose $deploymentDefinition
+
 # Module imports
 Import-Module psyaml
 
