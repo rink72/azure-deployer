@@ -3,7 +3,7 @@ Param
 (
     # Deployment definition. This is a definition in YAML syntax.
     [Parameter()]
-    [String] $DeploymentDefinition = @'
+    [Object] $WebhookData = @'
 ---
 name: Dummy Deployment
 action: Create
@@ -21,6 +21,13 @@ VirtualMachines:
   [switch] $Verbose = $false
 )
 
+
+# If runbook was called from Webhook, WebhookData will not be null.
+if ( -not $WebhookData) 
+{
+  Throw "Expecting webhook data."
+  Return
+}
 
 
 # Module imports
